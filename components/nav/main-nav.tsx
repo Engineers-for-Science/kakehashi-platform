@@ -16,7 +16,7 @@ export function MainNav({ className, items, ...props }: MainNavProps) {
   const pathname = usePathname()
   return (
     <nav
-      className={cn("flex items-center space-x-2 md:space-x-6", className)}
+      className={cn("flex items-center space-x-0.5 md:space-x-6", className)}
       {...props}
     >
       {items.map((item) => (

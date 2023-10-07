@@ -20,9 +20,13 @@ const mainNavItems = [
     title: "Query",
     href: "/home/query",
   },
+  // {
+  //   title: "My Projects",
+  //   href: "/home/my-projects",
+  // },
   {
-    title: "My Projects",
-    href: "/home/my-projects",
+    title: "Find Contributors",
+    href: "/home/find-contributors",
   },
 ]
 
@@ -43,7 +47,7 @@ export default function CreateProjectLayout({ children }: CreateProjectLayoutPro
                   width={30}
                   height={30}
                   alt="Kakehashi Logo"
-                  className="rounded w-6 h-6 mr-0.5"
+                  className="rounded w-4 h-4 md:w-6 md:h-6 mr-0.5"
                 />
                 akehashi
               </div>
