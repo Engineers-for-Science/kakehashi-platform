@@ -6,66 +6,37 @@ import { ProjectCard } from "../../../components/cards/project-card";
 import LoadingCard from "@/components/cards/loading-card";
 import { Input } from "@/components/ui/input";
 import { SearchIcon } from "lucide-react";
+import { sql } from "@vercel/postgres";
+import { getSessionUser } from "@/lib/firebase-admin";
 
 
-export default function MyProjects() {
-  const projects = [
-    {
-      id: 'jbsdhsbdj',
-      title: 'Example Project',
-      description: 'This is an example project for the purpose of developing this ui.',
-      tags: ['Space & Science'],
-      status: 'active',
-      stars: 69
-    },
-    {
-      id: 'jbsdhsbdj',
-      title: 'Example Project',
-      description: 'This is an example project for the purpose of developing this ui.',
-      tags: ['Space & Science'],
-      status: 'active',
-      stars: 69
-    },
-    {
-      id: 'jbsdhsbdj',
-      title: 'Example Project',
-      description: 'This is an example project for the purpose of developing this ui.',
-      tags: ['Space & Science'],
-      status: 'active',
-      stars: 69
-    },
-    {
-      id: 'jbsdhsbdj',
-      title: 'Example Project',
-      description: 'This is an example project for the purpose of developing this ui.',
-      tags: ['Space & Science'],
-      status: 'active',
-      stars: 69
-    },
-    {
-      id: 'jbsdhsbdj',
-      title: 'Example Project',
-      description: 'This is an example project for the purpose of developing this ui.',
-      tags: ['Space & Science'],
-      status: 'active',
-      stars: 69
-    },
-    {
-      id: 'jbsdhsbdj',
-      title: 'Example Project',
-      description: 'This is an example project for the purpose of developing this ui.',
-      tags: ['Space & Science'],
-      status: 'active',
-      stars: 69
-    },
-  ];
+export default async function MyProjects() {
+  // const projects = [
+
+  // ];
+  const currentSession = await getSessionUser()
+  if (!currentSession) {
+    return <>Unauthorized</>
+  }
+  const userId = currentSession.uid
+  const user = (await sql`select * from contributor where id = ${userId};`).rows[0]
+  const projects = (await sql`
+    SELECT p.*
+    FROM contributor c
+    JOIN LATERAL UNNEST(c.fav_projects) AS fav_project_id
+    ON TRUE
+    JOIN project p
+    ON p.project_id = fav_project_id
+    WHERE c.id = ${userId};
+  `).rows;
+
 
   if (projects.length === 0) return (
     <>
       <div className="w-full h-full flex justify-center items-center">
         <div className="text-md">
           Looks like you have no starred projects! You can {' '}
-          <a href="/home" className="underline">see popular projects here</a> or {' '}
+          <a href="/home" className="underline">see matched projects here</a> or {' '}
           <a href="/home/query" className="underline">query projects here.</a>
         </div>
       </div>
@@ -98,7 +69,7 @@ export default function MyProjects() {
             title={project.title}
             description={project.description}
             status={project.status}
-            tags={project.tags}
+            tags={project.tags[0].split(', ')}
             stars={project.stars}
           />
         ))}
