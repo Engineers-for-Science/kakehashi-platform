@@ -11,54 +11,39 @@ import { Badge } from "@/components/ui/badge";
 import { ProjectCard } from "@/components/cards/project-card";
 
 export default async function Profile() {
-  const profile = {
-    name: 'Firstname Lastname',
-    email: 'example@gmail.com',
-    orcidId: '00000-00000-00000',
-    searchable: true,
-    tags: ['Education', 'Chemistry', 'Aerospace', 'Education', 'Chemistry', 'Aerospace'],
-    projects: [
-      {
-        id: 'jbsdhsbdj',
-        title: 'Example Project',
-        description: 'This is an example project for the purpose of developing this ui.',
-        tags: ['Space & Science'],
-        status: 'active',
-        stars: 69
-      },
-      {
-        id: 'jbsdhsbdj',
-        title: 'Example Project',
-        description: 'This is an example project for the purpose of developing this ui.',
-        tags: ['Space & Science'],
-        status: 'active',
-        stars: 69
-      },
-      {
-        id: 'jbsdhsbdj',
-        title: 'Example Project',
-        description: 'This is an example project for the purpose of developing this ui.',
-        tags: ['Space & Science'],
-        status: 'active',
-        stars: 69
-      },
-      {
-        id: 'jbsdhsbdj',
-        title: 'Example Project',
-        description: 'This is an example project for the purpose of developing this ui.',
-        tags: ['Space & Science'],
-        status: 'active',
-        stars: 69
-      },
-    ]
-  }
 
   const currentSession = await getSessionUser()
   if (!currentSession) {
     return <>Unauthorized</>
   }
   const userId = currentSession.uid
-  const user = (await sql`select * from contributor where id = ${userId};`).rows[0]
+  const user = (await sql`select * from contributor where id = ${userId};`).rows[0];
+  const projects = (await sql`
+  WITH FavoriteCounts AS (
+    SELECT 
+        favorite.project_id,
+        COUNT(*) AS count
+    FROM 
+        favorite
+    GROUP BY 
+        favorite.project_id
+)
+
+SELECT 
+    p.*,
+    COALESCE(fc.count, 0) AS count
+FROM 
+    contributor c
+JOIN LATERAL UNNEST(c.fav_projects) AS fav_project_id
+    ON TRUE
+JOIN project p
+    ON p.project_id = fav_project_id
+LEFT JOIN FavoriteCounts fc
+    ON p.project_id = fc.project_id
+WHERE 
+    c.id = ${userId};
+
+  `).rows;
 
   return (
     <>
@@ -90,7 +75,7 @@ export default async function Profile() {
               <div className="text-md font-bold">Searchable?</div>
               <div className="text-md">
                 <Switch
-                  checked={profile.searchable}
+                  checked={true}
                   //onCheckedChange={() => { }}
                   disabled
                   aria-readonly
@@ -108,16 +93,16 @@ export default async function Profile() {
           <div className="mb-2 md:w-2/3 flex flex-col items-start justify-start rounded-lg border p-4 shadow">
             <div className="text-md font-bold mb-1">Projects</div>
             <div className="grid grid-rows-auto grid-cols-1 md:grid-cols-2 gap-2">
-              {profile.projects.map(project => (
+              {projects.map(project => (
                 <ProjectCard
-                  key={project.id}
-                  id={project.id}
-                  title={project.title}
-                  description={project.description}
-                  tags={project.tags}
-                  status={project.status}
-                  stars={project.stars}
-                />
+                key={project.project_id}
+                id={project.project_id}
+                title={project.project_name}
+                description={project.description}
+                tags={project.tags[0].split(', ')}
+                status={project.status}
+                stars={project.count}
+              />
               ))}
             </div>
           </div>

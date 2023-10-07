@@ -1,6 +1,6 @@
 const GPT_ENDPOINT = "https://api.openai.com/v1/completions";
 const EMBEDDING_ENDPOINT = "https://api.openai.com/v1/embeddings";
-const API_KEY = "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";
+const API_KEY = process.env.OPENAI_API_KEY;
 
 const callCompletions = async (prompt: string): Promise<string> => {
   try {

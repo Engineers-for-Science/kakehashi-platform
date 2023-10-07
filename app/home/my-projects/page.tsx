@@ -8,15 +8,13 @@ import { Input } from "@/components/ui/input";
 import { SearchIcon } from "lucide-react";
 import { sql } from "@vercel/postgres";
 import { getSessionUser } from "@/lib/firebase-admin";
+import { useRouter } from "next/navigation";
 
 
 export default async function MyProjects() {
-  // const projects = [
-
-  // ];
   const currentSession = await getSessionUser()
   if (!currentSession) {
-    return <>Unauthorized</>
+    return <></>
   }
   const userId = currentSession.uid
   const user = (await sql`select * from contributor where id = ${userId};`).rows[0]
@@ -64,14 +62,14 @@ export default async function MyProjects() {
         </div>
         {projects.map(project => (
           <ProjectCard
-            key={project.id}
-            id={project.id}
-            title={project.title}
-            description={project.description}
-            status={project.status}
-            tags={project.tags[0].split(', ')}
-            stars={project.stars}
-          />
+              key={project.project_id}
+              id={project.project_id}
+              title={project.project_name}
+              description={project.description}
+              tags={project.tags[0].split(', ')}
+              status={project.status}
+              stars={project.count}
+            />
         ))}
       </div>
     </>

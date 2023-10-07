@@ -7,6 +7,7 @@ import { getSessionUser } from "@/lib/firebase-admin";
 import { getProjectsByPresetKeyword, getYourMatchedProjects } from "@/lib/vectorSearch";
 import { sql } from "@vercel/postgres";
 import { Separator } from "@/components/ui/separator";
+import { useRouter } from "next/navigation";
 
 export default async function Home() {
   const user = await getSessionUser()
