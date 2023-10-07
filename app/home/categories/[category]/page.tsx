@@ -12,7 +12,18 @@ const getProjects = async (category: string) => {
       }
       return getYourMatchedProjects(user.uid, 12);
     case 'popular':
-      return [];
+      return (await sql`
+      SELECT 
+        project.*, 
+        COALESCE(favorite.count, 0) AS count
+      FROM 
+        project
+      LEFT JOIN 
+        favorite ON project.project_id = favorite.project_id
+      ORDER BY 
+      count DESC 
+      LIMIT 12;
+      `).rows;
     case 'new':
       return (await sql`SELECT * FROM project ORDER BY start_date DESC LIMIT 12;`).rows;
     case 'aerospace':
@@ -48,7 +59,7 @@ export default async function ProjectPage({ params }: { params: { category: stri
               description={project.description}
               tags={project.tags[0].split(', ')}
               status={project.status}
-              stars={0}
+              stars={project.count}
             />
           ))}
         </div>

@@ -24,10 +24,10 @@ const sidebarNavItems = [
   //   title: "Appearance",
   //   href: "/settings/appearance",
   // },
-  {
-    title: "Notifications",
-    href: "/settings/notifications",
-  },
+  // {
+  //   title: "Notifications",
+  //   href: "/settings/notifications",
+  // },
   // {
   //   title: "Display",
   //   href: "/settings/display",
@@ -50,7 +50,7 @@ export default function SettingsLayout({ children }: SettingsLayoutProps) {
         <div className="space-y-0.5">
           <h2 className="text-2xl font-bold tracking-tight">Settings</h2>
           <p className="text-muted-foreground">
-            Manage your account settings and set email notification preferences.
+            Manage your account settings.
           </p>
         </div>
         <Separator className="my-6" />
