@@ -57,9 +57,9 @@ export function ProjectCard({
             </div>
             <div>
               <Badge
-                className={`${status === 'active' ? 'bg-green-400' : status === 'complete' ? 'bg-blue-400' : 'bg-orange-400'}`}
+                className={`${status.toLowerCase() === 'active' ? 'bg-green-400' : status.toLowerCase() === 'complete' ? 'bg-blue-400' : 'bg-orange-400'}`}
               >
-                Status: {status ?? 'Unknown'}
+                Status: {status.toLowerCase() ?? 'Unknown'}
               </Badge>
             </div>
           </div>
