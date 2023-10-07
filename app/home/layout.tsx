@@ -5,6 +5,7 @@ import Link from "next/link";
 import { MainNav } from "@/components/nav/main-nav"
 import { Search } from "@/components/nav/search";
 import { UserNav } from "@/components/nav/user-nav";
+import DonateBtn from "@/components/DonateBtn";
 
 export const metadata: Metadata = {
   title: "Kakehashi | Home",
@@ -53,7 +54,9 @@ export default function HomeLayout({ children }: HomeLayoutProps) {
               </div>
               <MainNav className="mx-2 md:mx-6 flex" items={mainNavItems} />
               <div className="ml-auto flex items-center space-x-1 md:space-x-4 md:mr-2">
-                <div className="hidden md:block"><Search /></div>
+                <div className="hidden md:block">
+                  <DonateBtn />
+                </div>
                 <UserNav />
               </div>
             </div>

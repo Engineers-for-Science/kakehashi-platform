@@ -22,7 +22,7 @@ export default function FindContributors() {
         <div className="mt-4 flex justify-center items-center">
           <Input
             type="search"
-            placeholder="Are there any open-source projects combining biotech and artificial intelligence?"
+            placeholder="Find me contributors with a background in organic chemistry."
             className="md:w-1/2 shadow mr-2"
           />
           <Button variant='secondary' className="shadow"><SearchIcon /></Button>

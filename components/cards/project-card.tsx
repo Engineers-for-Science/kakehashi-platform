@@ -41,8 +41,7 @@ export function ProjectCard({
         <CardHeader className="grid grid-cols-[1fr_60px] items-start gap-2 space-y-0">
           <div className="space-y-1">
             <CardTitle>{title ?? ''}</CardTitle>
-            <CardDescription>
-              {description && description.length > 200 ? description.slice(0, 200) + '...' : description ?? ''}
+            <CardDescription dangerouslySetInnerHTML={{ __html: description && description.length > 200 ? description.slice(0, 200) + '...' : description ?? '' }}>
             </CardDescription>
           </div>
           <div className="flex items-center justify-center text-sm p-1 border rounded">
