@@ -20,9 +20,13 @@ const mainNavItems = [
     title: "Query",
     href: "/home/query",
   },
+  // {
+  //   title: "My Projects",
+  //   href: "/home/my-projects",
+  // },
   {
-    title: "My Projects",
-    href: "/home/my-projects",
+    title: "Find Contributors",
+    href: "/home/find-contributors",
   },
 ]
 

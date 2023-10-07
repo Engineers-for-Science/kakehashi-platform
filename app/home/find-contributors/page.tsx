@@ -8,15 +8,13 @@ import { ArrowBigRight, CheckCheckIcon, SearchCheckIcon, SearchIcon } from "luci
 import LoadingCard from "@/components/cards/loading-card";
 
 
-export default function Query() {
-  
+export default function FindContributors() {
+
   return (
     <>
       <div className="p-6 md:pt-20">
-        <div className="text-[20px] md:text-[40px] font-bold flex items-center justify-center">
-          <SearchCheckIcon className="w-10 h-10" /> Search <ArrowBigRight className="w-10 h-10" />
-          Match <ArrowBigRight className="w-10 h-10" />
-          Browse <CheckCheckIcon className="w-10 h-10 ml-0.5" />
+        <div className="text-[20px] md:text-[40px] font-bold flex items-center md:justify-center">
+          Find Skilled Contributors
         </div>
         <div className="text-md flex items-center justify-center">
           Query the Kakehashi vector search algorithm with natural language.
@@ -29,7 +27,7 @@ export default function Query() {
           />
           <Button variant='secondary' className="shadow"><SearchIcon /></Button>
         </div>
-        <div className="md:p-6 mt-4 grid grid-rows-auto grid-cols-1 md:grid-cols-3 gap-2">   
+        <div className="md:p-6 mt-4 grid grid-rows-auto grid-cols-1 md:grid-cols-3 gap-2">
           {Array(6).fill(6).map((card, index) => (<LoadingCard key={index} />))}
         </div>
       </div>
