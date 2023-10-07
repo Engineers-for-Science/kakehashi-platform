@@ -1,3 +1,5 @@
+'use client'
+
 import { Button, buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
@@ -6,35 +8,25 @@ import { ProjectCard } from "@/components/cards/project-card";
 import { Input } from "@/components/ui/input";
 import { ArrowBigRight, CheckCheckIcon, SearchCheckIcon, SearchIcon } from "lucide-react";
 import LoadingCard from "@/components/cards/loading-card";
+import { useState } from "react";
 
+export default function Query() {
+  const [projects, setProjects] = useState<any[]>([])
+  const [input, setInput] = useState<string>('')
 
-export default function Browse() {
-  const projects = [
-    {
-      id: 'jbsdhsbdj',
-      title: 'Example Project',
-      description: 'This is an example project for the purpose of developing this ui.',
-      category: 'Space & Science',
-      lastUpdated: 'April 14, 2023',
-      stars: 69
-    },
-    {
-      id: 'jbsdhsbdj',
-      title: 'Example Project',
-      description: 'This is an example project for the purpose of developing this ui.',
-      category: 'Space & Science',
-      lastUpdated: 'April 14, 2023',
-      stars: 69
-    },
-    {
-      id: 'jbsdhsbdj',
-      title: 'Example Project',
-      description: 'This is an example project for the purpose of developing this ui.',
-      category: 'Space & Science',
-      lastUpdated: 'April 14, 2023',
-      stars: 69
-    },
-  ]
+  const onChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setInput(event.target.value);
+  };
+
+  const queryProjects = async () => {
+    const url = `/api/projects/byKeyword?keyword=${input}`
+    const response = await fetch(url, {
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    })
+    setProjects((await response.json()).projects)
+  }
   return (
     <>
       <div className="p-6 md:pt-20">
@@ -51,22 +43,24 @@ export default function Browse() {
             type="search"
             placeholder="Are there any open-source projects combining biotech and artificial intelligence?"
             className="md:w-1/2 shadow mr-2"
+            onChange={onChangeInput}
           />
-          <Button variant='secondary' className="shadow"><SearchIcon /></Button>
+          <Button variant='secondary' className="shadow" onClick={queryProjects}><SearchIcon /></Button>
         </div>
         <div className="md:p-6 mt-4 grid grid-rows-auto grid-cols-1 md:grid-cols-3 gap-2">
-          {/* {projects.map(project => (
-            <ProjectCard
-              key={project.id}
-              id={project.id}
-              title={project.title}
-              description={project.description}
-              category={project.category}
-              lastUpdated={project.lastUpdated}
-              stars={project.stars}
-            />
-          ))} */}
-          {Array(6).fill(6).map((card, index) => (<LoadingCard key={index} />))}
+          {projects.length === 0 ? Array(6).fill(6).map((card, index) => (<LoadingCard key={index} />)) :
+            projects.map(
+              (project) =>
+                <ProjectCard
+                  key={project.project_id}
+                  id={project.project_id}
+                  title={project.project_name}
+                  description={project.description}
+                  tags={project.tags[0].split(', ')}
+                  status={project.status}
+                  stars={project.count}
+                />
+            )}
         </div>
       </div>
     </>

@@ -5,7 +5,7 @@ const fetchORCIDAccessToken = async () => {
   };
   const bodyData = new URLSearchParams({
     client_id: "APP-5A5ZHRGOPGYQE8RL",
-    client_secret: "9a79634e-2757-4f4a-8fa2-bb5cbff6e7c9",
+    client_secret: process.env.ORCID_SECRET!,
     grant_type: "client_credentials",
     scope: "/read-public",
   });

@@ -2,7 +2,7 @@ import { Pinecone } from "@pinecone-database/pinecone";
 
 const pinecone = new Pinecone({
   environment: "gcp-starter",
-  apiKey: "0c0ee033-76b3-4941-9198-ddd2111968e9",
+  apiKey: process.env.PINECONE_APIKEY!,
 });
 
 const pineconeUpsert = (pineconeRecords: any) => {
@@ -51,6 +51,20 @@ const searchProjectIdsByPresetKeyword = (
   });
 };
 
+const searchProjectIdsByVector = (
+  vector: number[],
+  topK: number
+) => {
+  const index = pinecone.Index("skills");
+  return index.query({
+    topK: topK,
+    vector: vector,
+    filter: {
+      type: "project",
+    },
+  });
+};
+
 const deleteProjectsFromPinecone = async () => {
   const index = pinecone.Index("skills");
   await index.deleteMany({ type: "project" });
@@ -62,4 +76,5 @@ export {
   searchProjectIdsByContributorId,
   deleteProjectsFromPinecone,
   searchProjectIdsByPresetKeyword,
+  searchProjectIdsByVector
 };
