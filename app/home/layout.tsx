@@ -20,9 +20,13 @@ const mainNavItems = [
     title: "Query",
     href: "/home/query",
   },
+  // {
+  //   title: "My Projects",
+  //   href: "/home/my-projects",
+  // },
   {
-    title: "My Projects",
-    href: "/home/my-projects",
+    title: "Find Contributors",
+    href: "/home/find-contributors",
   },
 ]
 
@@ -37,18 +41,18 @@ export default function HomeLayout({ children }: HomeLayoutProps) {
         <div className="flex flex-col h-full">
           <div className="border-b">
             <div className="flex h-16 items-center px-2">
-              <div className="flex items-center font-bold text-sm md:text-2xl py-1 px-1 md:px-2">
+              <div className="flex items-center font-bold text-xs md:text-2xl py-1 px-0.5 md:px-2">
                 <Image
                   src='/kakehashi.png'
                   width={30}
                   height={30}
                   alt="Kakehashi Logo"
-                  className="rounded w-6 h-6 mr-0.5"
+                  className="rounded w-4 h-4 mr-0.5"
                 />
                 akehashi
               </div>
               <MainNav className="mx-2 md:mx-6 flex" items={mainNavItems} />
-              <div className="ml-auto flex items-center space-x-2 md:space-x-4 md:mr-2">
+              <div className="ml-auto flex items-center space-x-1 md:space-x-4 md:mr-2">
                 <div className="hidden md:block"><Search /></div>
                 <UserNav />
               </div>
