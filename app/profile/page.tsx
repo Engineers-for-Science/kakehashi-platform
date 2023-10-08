@@ -10,6 +10,13 @@ import { Pencil2Icon } from "@radix-ui/react-icons"
 import { Badge } from "@/components/ui/badge";
 import { ProjectCard } from "@/components/cards/project-card";
 
+function trimApostrophes(str: string) {
+  if (str.startsWith("'") && str.endsWith("'")) {
+    return str.slice(1, -1);
+  }
+  return str;
+}
+
 export default async function Profile() {
 
   const currentSession = await getSessionUser()
@@ -85,7 +92,7 @@ WHERE
             <div className="mb-2 flex flex-col items-start justify-start rounded-lg backdrop-blur-lg bg-white/30 p-4 shadow">
               <div className="text-md font-bold mb-1">Tags</div>
               <div className="text-md">
-                {user.tags[0].split(', ').map((tag: string, index: number) => <Badge key={index} className="mr-1 mb-1">{tag.slice(1, -1)}</Badge>)}
+                {user.tags[0].split(', ').map((tag: string, index: number) => <Badge key={index} className="mr-1 mb-1">{trimApostrophes(tag)}</Badge>)}
               </div>
             </div>
           </div>

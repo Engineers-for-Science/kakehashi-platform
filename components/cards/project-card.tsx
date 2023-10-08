@@ -22,6 +22,13 @@ interface ProjectCardProps extends React.HTMLAttributes<HTMLElement> {
   stars: number,
 }
 
+function trimApostrophes(str: string) {
+  if (str.startsWith("'") && str.endsWith("'")) {
+    return str.slice(1, -1);
+  }
+  return str;
+}
+
 const DisplayCutTags = ({ tags }: { tags: string[] }) => {
   const displayCount = 3;
   const excess = tags.length > displayCount ? tags.length - displayCount : 0;
@@ -30,7 +37,7 @@ const DisplayCutTags = ({ tags }: { tags: string[] }) => {
     <>
       {tags.slice(0, Math.min(displayCount, tags.length)).map((tag, index) => (
         <Badge key={index} className="mr-1 mb-1">
-          {tag.slice(1, -1)}
+          {trimApostrophes(tag)}
         </Badge>
       ))}
       {excess > 0 && (

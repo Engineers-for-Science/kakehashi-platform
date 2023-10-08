@@ -7,6 +7,13 @@ import { StarIcon } from "@radix-ui/react-icons";
 import { sql } from "@vercel/postgres";
 import Image from "next/image";
 
+function trimApostrophes(str: string) {
+  if (str.startsWith("'") && str.endsWith("'")) {
+    return str.slice(1, -1);
+  }
+  return str;
+}
+
 
 export default async function ProjectPage({ params }: { params: { id: string } }) {
   const result = await sql`
@@ -61,7 +68,7 @@ export default async function ProjectPage({ params }: { params: { id: string } }
               <div className="mb-2 flex flex-col items-start justify-start rounded-lg backdrop-blur-sm bg-white/90 p-4 shadow">
                 <div className="text-md font-bold">Tags</div>
                 <div className="flex flex-wrap pt-1">
-                  {result.rows[0].tags[0].split(', ').map((tag: string, index: number) => <Badge key={index} className="mr-1 mb-1">{tag.slice(1, -1)}</Badge>)}
+                  {result.rows[0].tags[0].split(', ').map((tag: string, index: number) => <Badge key={index} className="mr-1 mb-1">{trimApostrophes(tag)}</Badge>)}
                 </div>
               </div>
 
@@ -127,7 +134,7 @@ export default async function ProjectPage({ params }: { params: { id: string } }
             <div className="mb-2 flex flex-col items-start justify-start rounded-lg backdrop-blur-sm bg-white/90 p-4 shadow">
               <div className="text-md font-bold">Tags</div>
               <div className="flex flex-wrap pt-1">
-                {result.rows[0].tags[0].split(', ').map((tag: string, index: number) => <Badge key={index} className="mr-1 mb-1">{tag.slice(1, -1)}</Badge>)}
+                {result.rows[0].tags[0].split(', ').map((tag: string, index: number) => <Badge key={index} className="mr-1 mb-1">{trimApostrophes(tag)}</Badge>)}
               </div>
             </div>
 
