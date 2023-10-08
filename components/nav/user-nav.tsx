@@ -61,11 +61,11 @@ export async function UserNav() {
               Settings
             </DropdownMenuItem>
           </Link>
-          {/* <Link href='/create-project'>
+          <Link href='/create-project'>
             <DropdownMenuItem>
               Create a Project
             </DropdownMenuItem>
-          </Link> */}
+          </Link>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <Link href='/'>

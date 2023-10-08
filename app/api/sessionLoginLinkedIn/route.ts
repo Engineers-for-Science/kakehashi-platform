@@ -1,9 +1,10 @@
 import { NextResponse } from "next/server";
+import { kv } from "@vercel/kv";
 
 const fetchAccessToken = async (authorizationCode: string) => {
   const tokenEndpoint = "https://www.linkedin.com/oauth/v2/accessToken";
   const clientId = "86h4m01yn21lk0";
-  const clientSecret = "JXM7YpkvbqOAmKV0";
+  const clientSecret = process.env.LINKEDIN_CLIENTSEC!;
   const redirectUri =
     "https://kakehashi-platform.vercel.app/api/sessionLoginLinkedIn";
 
@@ -38,8 +39,7 @@ export async function GET(request: Request) {
   const code = searchParams.get("code")!;
 
   const credential = await fetchAccessToken(code);
+  await kv.set("session", credential);
 
-  return NextResponse.redirect(
-    `https://kakehashi-platform.vercel.app/api/sessionLoginLinkedInFinalize?token=${credential.id_token}`
-  );
+  return NextResponse.json({});
 }

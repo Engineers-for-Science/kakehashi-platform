@@ -92,9 +92,16 @@ export default function FindContributors() {
             {loading ?
               <>{Array(3).fill(3).map((card, index) => (<LoadingCard key={index} />))}</>
               :
-              <>{contributors.length > 0 ? <>{contributors.map((contributor) => <ContributorCard contributor={contributor} />)}</> : <></>}</>
+              <>{contributors.length > 0 ? <>{contributors.map((contributor) => <ContributorCard contributor={contributor} />)}
+
+              </> : <></>}</>
             }
           </div>
+          {/* {loading ? <></> : <div className="flex py-8 justify-center">
+            <Button variant='secondary' className="shadow" asChild>
+              <Link href={`/create-project`}>Are you going to create your project?</Link>
+            </Button>
+          </div>} */}
         </div>
       </div>
     </>
