@@ -72,10 +72,16 @@ export default function FindContributors() {
           <div className="text-[20px] md:text-[40px] font-bold flex items-center md:justify-center">
             Find Skilled Contributors
           </div>
-          <div className="text-md flex items-center justify-center">
+          {/* <div className="text-md flex items-center justify-center">
             <ArrowBigLeft /><div className="text-xl font-bold">Bidirectional Matching</div><ArrowBigRight />
-            {/* <p>So, we provide potential contributor search feature for project owners.</p>
-            <p>Try it out, KAKEHASHI NLP + Vector Search Engine by just putting URL!</p> */}
+            <p>So, we provide potential contributor search feature for project owners.</p>
+            <p>Try it out, KAKEHASHI NLP + Vector Search Engine by just putting URL!</p>
+          </div> */}
+          <div className="text-sm flex items-center justify-center text-gray-400 md:px-28 md:text-center">
+            3 ways to search for skilled contributers.
+            1) Enter any project url, external or on Kakehashi, to find contributors that match the project.
+            2) Directly search contributors by name or by skills.
+            3) Use natural language to describle the contributor you need.
           </div>
           <div className="mt-4 flex justify-center items-center">
             <Input

@@ -45,8 +45,8 @@ export default function Query() {
             Match <ArrowBigRight className="w-10 h-10" />
             Browse <CheckCheckIcon className="w-10 h-10 ml-0.5" />
           </div>
-          <div className="text-md flex items-center justify-center">
-            Query the Kakehashi vector search algorithm with natural language.
+          <div className="text-sm flex items-center justify-center text-gray-400 md:px-28 md:text-center">
+            Find projects by querying the Kakehashi vector search algorithm with natural language.
           </div>
           <div className="mt-4 flex justify-center items-center">
             <Input

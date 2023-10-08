@@ -7,7 +7,7 @@ export default function DonateBtn() {
 
   return (
     <>
-      <Button>Buy the Kakehashi team a coffee <CoffeeIcon className="ml-3" /></Button>
+      <a href="https://www.buymeacoffee.com/kakehashi"><Button>Buy Us a Coffee <CoffeeIcon className="ml-3" /></Button></a>
     </>
   )
 }
