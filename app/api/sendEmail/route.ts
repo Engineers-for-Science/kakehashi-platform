@@ -3,7 +3,7 @@ const nodemailer = require('nodemailer');
 
 export async function POST(req: Request) {
   
-  const { message, senderEmail, recepientEmail } = await req.json();
+  const { message, senderEmail, recepientEmail, email } = await req.json();
 
   const transporter = nodemailer.createTransport({
     service: 'gmail', // replace with your email service
@@ -17,8 +17,8 @@ export async function POST(req: Request) {
   const mailOptions = {
     from: process.env.EMAIL_USER,
     to: `${recepientEmail}`,
-    subject: `KAKEHASHI SPACE APP - New message from ${senderEmail}`,
-    text: `From ${senderEmail}:\n${message}`,
+    subject: `KAKEHASHI SPACE APP - New message from ${email}`,
+    text: `From ${email}:\n${message}`,
   };
 
   try {

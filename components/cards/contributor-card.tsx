@@ -62,7 +62,7 @@ export function ContributorCard({ className, contributor, ...props }: TeamCardPr
               <div className="grid gap-4">
                 <div className="space-y-2">
                   <h4 className="font-bold leading-none">{contributor.name}</h4>
-                  <SendMailForm senderEmail={'notis@kakehashi.io'} recepientEmail={contributor.email} />
+                  <SendMailForm senderEmail={'notis@kakehashi.com'} recepientEmail={contributor.email} />
                 </div>
               </div>
             </PopoverContent>
