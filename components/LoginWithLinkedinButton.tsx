@@ -41,7 +41,7 @@ const LoginWithLinkedInButton = () => {
   }
 
   const openPopup = async () => {
-    const popup = window.open(`https://www.linkedin.com/oauth/v2/authorization?client_id=86h4m01yn21lk0&redirect_uri=https://space-app-challenge-2023.firebaseapp.com/__/auth/handler&response_type=code&scope=openid%20profile%20email`, 'LinkedIn Login', 'height=600,width=450')!;
+    const popup = window.open(`https://www.linkedin.com/oauth/v2/authorization?client_id=86h4m01yn21lk0&redirect_uri=https://kakehashi-platform.vercel.app/api/sessionLoginLinkedIn&response_type=code&scope=openid%20profile%20email`, 'LinkedIn Login', 'height=600,width=450')!;
     // https://space-app-challenge-2023.firebaseapp.com/__/auth/handler?code=AQQeRimyK5WETAzSMoO4MbYTkOP9uRA8VptvpwPGcRBh9eBEAwa78h00ecWIc3r0ELIhAOMbRwDGD4QAaTS-f4x00buHvdS4W-9pVMc7FA0czVVqCYuIb9_78eqWhSv298VSYColKzxqSFNidDtTaDMDV8mJ8q1mcXPet71VgZeNj9noU8snnC-61fi8aRT_RTsnq_1pRdQ6CGDLMA0
     const intervalId = setInterval(async () => {
       if (popup.closed) {
