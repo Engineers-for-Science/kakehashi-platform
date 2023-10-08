@@ -47,7 +47,7 @@ export default function FindContributors() {
       body: JSON.stringify(param)
     })
     const data = await response.json()
-    const contributors = data.contributors.rows
+    const contributors = data.contributors
     const skills = data.skills
     setContributors(contributors)
     setSkills(skills)

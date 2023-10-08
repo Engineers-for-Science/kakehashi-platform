@@ -54,8 +54,13 @@ export async function POST(request: Request) {
     const contributors =
       // @ts-expect-error
       await sql`select * from contributor where id = any (${contributorIds});`;
+    const sorted = contributors.rows.sort(
+      (a, b) =>
+        contributorIds.indexOf(a.id.toString()) -
+        contributorIds.indexOf(b.id.toString())
+    );
     return NextResponse.json({
-      contributors: contributors,
+      contributors: sorted,
       skills: tags,
     });
   } else {
@@ -68,8 +73,13 @@ export async function POST(request: Request) {
     const contributors =
       // @ts-expect-error
       await sql`select * from contributor where id = any (${contributorIds});`;
+    const sorted = contributors.rows.sort(
+      (a, b) =>
+        contributorIds.indexOf(a.id.toString()) -
+        contributorIds.indexOf(b.id.toString())
+    );
     return NextResponse.json({
-      contributors: contributors,
+      contributors: sorted,
       skills: tags,
     });
   }
