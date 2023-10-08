@@ -27,7 +27,7 @@ export async function UserNav() {
 
   const currentSession = await getSessionUser()
   if (!currentSession) {
-    return <>Unauthorized</>
+    return <><Link href={'/'}><Button className="text-xs md:text-md">Login</Button></Link></>
   }
   const userId = currentSession.uid
   const user = (await sql`select * from contributor where id = ${userId};`).rows[0]

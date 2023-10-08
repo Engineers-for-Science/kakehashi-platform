@@ -34,6 +34,7 @@ export function SendMailForm({
 
   const sendMailFormSchema = z.object({
     senderEmail: z.string(),
+    email: z.string().email({ message: "Must be a valid email." }),
     recepientEmail: z.string(),
     message: z
       .string()
@@ -99,19 +100,35 @@ export function SendMailForm({
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
           <FormField
             control={form.control}
+            name="email"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Email</FormLabel>
+                <FormControl>
+                  <Input placeholder="example@kakehashi.com" {...field} />
+                </FormControl>
+                <FormDescription>
+                  Please enter your email
+                </FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
             name="message"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Send a short message:</FormLabel>
                 <FormControl>
                   <Textarea
-                    placeholder={`I would love to give you an interview for a position at my company, xyz.\n- Jack (jack@example.com)`}
+                    placeholder={`I would love to give you an interview for a position at my company, xyz. Jack (jack@kakehashi.com)`}
                     className="resize-none"
                     {...field}
                   />
                 </FormControl>
                 <FormDescription>
-                  The recepient will be able to see the email listed on your profile.
+                  Please include contact information
                 </FormDescription>
                 <FormMessage />
               </FormItem>
