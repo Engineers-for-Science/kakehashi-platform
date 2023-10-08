@@ -51,16 +51,24 @@ const searchProjectIdsByPresetKeyword = (
   });
 };
 
-const searchProjectIdsByVector = (
-  vector: number[],
-  topK: number
-) => {
+const searchProjectIdsByVector = (vector: number[], topK: number) => {
   const index = pinecone.Index("skills");
   return index.query({
     topK: topK,
     vector: vector,
     filter: {
       type: "project",
+    },
+  });
+};
+
+const searchContributorIdsByVector = (vector: number[], topK: number) => {
+  const index = pinecone.Index("skills");
+  return index.query({
+    topK: topK,
+    vector: vector,
+    filter: {
+      type: "contributor",
     },
   });
 };
@@ -76,5 +84,6 @@ export {
   searchProjectIdsByContributorId,
   deleteProjectsFromPinecone,
   searchProjectIdsByPresetKeyword,
-  searchProjectIdsByVector
+  searchProjectIdsByVector,
+  searchContributorIdsByVector,
 };

@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { LoginWithORCIDButton } from "@/components/LoginWithORCIDButton";
+import { LoginWithLinkedInButton } from "@/components/LoginWithLinkedinButton";
 
 export default function Auth() {
   return (
@@ -59,6 +60,7 @@ export default function Auth() {
               </p>
             </div>
             <LoginWithORCIDButton />
+            <LoginWithLinkedInButton />
             <p className="md:px-8 md:text-center text-sm text-muted-foreground">
               By clicking continue, you agree to our{" "}
               <Link
