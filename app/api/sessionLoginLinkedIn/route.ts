@@ -39,9 +39,7 @@ export async function GET(request: Request) {
 
   const credential = await fetchAccessToken(code);
 
-  return NextResponse.json({
-    status: "201",
-    message: "Session created.",
-    credential: credential,
-  });
+  return NextResponse.redirect(
+    `https://kakehashi-platform.vercel.app/api/sessionLoginLinkedInFinalize?token=${credential.id_token}`
+  );
 }

@@ -1,7 +1,7 @@
 'use client'
 import { useState } from "react";
 import { Button } from "./ui/button";
-import { OAuthProvider, getAuth, signInWithPopup, setPersistence } from "firebase/auth";
+import { getAuth } from "firebase/auth";
 import { useRouter } from 'next/navigation'
 
 // // Import the functions you need from the SDKs you need
@@ -28,30 +28,16 @@ const LoginWithLinkedInButton = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
 
-  const clickHandler = async () => {
-    setLoading(true);
-    const provider = new OAuthProvider('oidc.linkedin');
-    provider.addScope('profile');
-    provider.addScope('email');
-    const auth = getAuth();
-    const credentials = await signInWithPopup(auth, provider)
-    const idToken = await credentials.user.getIdToken()
-
-    console.log(idToken)
-  }
-
   const openPopup = async () => {
-    const popup = window.open(`https://www.linkedin.com/oauth/v2/authorization?client_id=86h4m01yn21lk0&redirect_uri=https://kakehashi-platform.vercel.app/api/sessionLoginLinkedIn&response_type=code&scope=openid%20profile%20email`, 'LinkedIn Login', 'height=600,width=450')!;
-    // https://space-app-challenge-2023.firebaseapp.com/__/auth/handler?code=AQQeRimyK5WETAzSMoO4MbYTkOP9uRA8VptvpwPGcRBh9eBEAwa78h00ecWIc3r0ELIhAOMbRwDGD4QAaTS-f4x00buHvdS4W-9pVMc7FA0czVVqCYuIb9_78eqWhSv298VSYColKzxqSFNidDtTaDMDV8mJ8q1mcXPet71VgZeNj9noU8snnC-61fi8aRT_RTsnq_1pRdQ6CGDLMA0
-    const intervalId = setInterval(async () => {
-      if (popup.closed) {
-        clearInterval(intervalId);
-        // //const response = await axios.get('/get-user-info'); // サーバーサイドで認証情報を取得
-        // if (response.data) {
-        //     setUser(response.data);
-        // }
-      }
-    }, 1000);
+    const w = 450
+    const h = 600
+    const screenWidth = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
+    const screenHeight = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
+
+    const left = (screenWidth / 2) - (w / 2);
+    const top = (screenHeight / 2) - (h / 2);
+
+    const popup = window.open(`https://www.linkedin.com/oauth/v2/authorization?client_id=86h4m01yn21lk0&redirect_uri=https://kakehashi-platform.vercel.app/api/sessionLoginLinkedIn&response_type=code&scope=openid%20profile%20email`, 'LinkedIn Login', 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left)
   };
 
   return (
