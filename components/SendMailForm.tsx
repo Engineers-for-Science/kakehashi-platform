@@ -105,7 +105,7 @@ export function SendMailForm({
                 <FormLabel>Send a short message:</FormLabel>
                 <FormControl>
                   <Textarea
-                    placeholder={`I would love to give you an interview for a position at my company, xyz.\n- Alfred`}
+                    placeholder={`I would love to give you an interview for a position at my company, xyz.\n- Jack (jack@example.com)`}
                     className="resize-none"
                     {...field}
                   />

@@ -59,7 +59,7 @@ export default async function ProjectPage({ params }: { params: { id: string } }
       <div className="p-6">
 
         <div className="mb-2 text-2xl font-bold flex items-center justify-between">
-          {result.rows[0].project_name}
+          <div className="rounded-lg backdrop-blur-sm bg-white/90 p-4 shadow">{result.rows[0].project_name}</div>
           <StarProjectBtn stars={stars} projectId={result.rows[0].project_id} isFavorited={isFavorited} />
         </div>
 
@@ -89,7 +89,7 @@ export default async function ProjectPage({ params }: { params: { id: string } }
             {result.rows[0].github_url ? (
               <div className="mb-2 flex flex-col items-start justify-start rounded-lg backdrop-blur-sm bg-white/90 p-4 shadow">
                 <div className="text-md font-bold">Repository</div>
-                <a href={result.rows[0].github_url} target="_blank" className="text-md underline hover:text-blue-300">{result.rows[0].github_url}</a>
+                <a href={result.rows[0].github_url} target="_blank" className="text-md underline hover:text-blue-300 break-all">{result.rows[0].github_url}</a>
               </div>
             ) : <></>}
 
