@@ -60,7 +60,7 @@ export default function Auth() {
               </p>
             </div>
             <LoginWithORCIDButton />
-            <LoginWithLinkedInButton />
+            {/* <LoginWithLinkedInButton /> */}
             <Link href={'/home'}><Button variant={'outline'} className="w-full">Continue as Guest</Button></Link>
             <p className="md:px-8 md:text-center text-sm text-muted-foreground">
               By clicking continue, you agree to our{" "}
