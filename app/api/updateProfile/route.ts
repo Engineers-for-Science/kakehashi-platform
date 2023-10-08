@@ -10,7 +10,7 @@ export async function POST(request: Request) {
     SET 
       Name = ${name},
       Email = ${email},
-      Tags = ARRAY[${tags}]::text[],
+      Tags = ARRAY[${tags}]::VARCHAR(255)[],
       Bio = ${bio}
     WHERE ID = ${id};
   `;
