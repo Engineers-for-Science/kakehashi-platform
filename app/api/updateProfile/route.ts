@@ -1,9 +1,11 @@
+import { createVectorFromTags } from "@/lib/dataModifiers";
 import { sql } from "@vercel/postgres";
 import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
   const { id, name, email, tags, bio } = await request.json();
-  const result = await sql`
+  const promise1 = createVectorFromTags(id, tags, "contributor");
+  const promise2 = sql`
     UPDATE contributor 
     SET 
       Name = ${name},
@@ -13,8 +15,13 @@ export async function POST(request: Request) {
     WHERE ID = ${id};
   `;
 
-  if(!result){
-    return NextResponse.json({status: '500', message: `Error creating profile: ${result}`});
+  const [result1, result2] = await Promise.all([promise1, promise2]);
+
+  if (!result2) {
+    return NextResponse.json({
+      status: "500",
+      message: `Error creating profile: ${result2}`,
+    });
   }
 
   return NextResponse.json({

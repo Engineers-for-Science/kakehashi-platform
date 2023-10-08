@@ -61,7 +61,7 @@ DON'T SAY ANYTHING, JUST OUTPUT TAGS PLEASE.
   return prompt;
 };
 
-const createPromptFromSummary = (summary: string, description: string) => {
+const createPromptFromSummary = (summary: string) => {
   const prompt = `
 Please extract a list of skills that members would likely be required to have for the execution of this project as tags.
 When extracting skills, please avoid using abstract terms like "organization", "communication", and use specific and professional terms.
@@ -79,7 +79,6 @@ example:
 ]
 
 Project:
-${description}
 ${summary}
 
 DON'T SAY ANYTHING, JUST OUTPUT TAGS PLEASE.
@@ -132,8 +131,20 @@ const extractTagsFromORCID = async (orcid: string) => {
 
 const extractTagsFromProjectURL = async (url: string, description: string) => {
   const summary = (await createSummaryByURL(url)) || "";
-  console.log(summary);
-  const prompt = createPromptFromSummary(summary, description);
+  const prompt = createPromptFromSummary(summary + description);
+  const tags = await callCompletions(prompt);
+  return formatTags(tags);
+};
+
+const extractTagsFromOnlyProjectURL = async (url: string) => {
+  const summary = (await createSummaryByURL(url)) || "";
+  const prompt = createPromptFromSummary(summary);
+  const tags = await callCompletions(prompt);
+  return formatTags(tags);
+};
+
+const extractTagsFromDescription = async (description: string) => {
+  const prompt = createPromptFromSummary(description);
   const tags = await callCompletions(prompt);
   return formatTags(tags);
 };
@@ -142,4 +153,6 @@ export {
   extractTagsFromORCID,
   createVectorFromTags,
   extractTagsFromProjectURL,
+  extractTagsFromDescription,
+  extractTagsFromOnlyProjectURL,
 };
