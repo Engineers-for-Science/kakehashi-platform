@@ -61,11 +61,11 @@ export default async function Home() {
     <>
       <div className="p-6">
 
-        <div className="mb-2 text-2xl font-bold">
+        <div className="mb-2 text-2xl font-bold rounded-lg backdrop-blur-sm bg-white/90 px-6 py-3 shadow flex justify-between items-center md:w-2/3">
           🔎 Your Matched Projects 🔎
-          {' '}<a href={`/home/categories/matched`} className="underline text-sm">see more...</a>
+          <a href={`/home/categories/matched`} className="underline text-sm">see more...</a>
         </div>
-        <Separator className="mb-4" />
+
         <div className="mb-10 grid grid-rows-auto grid-cols-1 md:grid-cols-3 gap-2">
           {yourMatchedProjects.map(project => (
             <ProjectCard
@@ -76,16 +76,17 @@ export default async function Home() {
               tags={project.tags[0].split(', ')}
               status={project.status}
               stars={project.count}
+              className="h-full flex flex-col justify-between items-start"
             />
           ))}
         </div>
 
-        <div className="mb-2 text-2xl font-bold">
+        <div className="mb-2 text-2xl font-bold rounded-lg backdrop-blur-sm bg-white/90 px-6 py-3 shadow flex justify-between items-center md:w-2/3">
           ✨ Popular Projects ✨
-          {' '}<a href={`/home/categories/popular`} className="underline text-sm">see more...</a>
+          <a href={`/home/categories/popular`} className="underline text-sm">see more...</a>
         </div>
-        <Separator className="mb-4" />
-        <div className="mb-10 grid grid-rows-auto grid-cols-1 md:grid-cols-3 gap-2">
+
+        <div className="mb-10 grid grid-auto-rows grid-cols-1 md:grid-cols-3 gap-2">
           {popularProjects.map(project => (
             <ProjectCard
               key={project.project_id}
@@ -95,15 +96,16 @@ export default async function Home() {
               tags={project.tags[0].split(', ')}
               status={project.status}
               stars={project.count}
+              className="h-full flex flex-col justify-between items-start"
             />
           ))}
         </div>
 
-        <div className="mb-2 text-2xl font-bold">
+        <div className="mb-2 text-2xl font-bold rounded-lg backdrop-blur-sm bg-white/90 px-6 py-3 shadow flex justify-between items-center md:w-2/3">
           🔥 New Projects 🔥
-          {' '}<a href={`/home/categories/new`} className="underline text-sm">see more...</a>
+          <a href={`/home/categories/new`} className="underline text-sm">see more...</a>
         </div>
-        <Separator className="mb-4" />
+
         <div className="mb-10 grid grid-rows-auto grid-cols-1 md:grid-cols-3 gap-2">
           {newProjects.map(project => (
             <ProjectCard
@@ -114,15 +116,16 @@ export default async function Home() {
               tags={project.tags[0].split(', ')}
               status={project.status}
               stars={project.count}
+              className="h-full flex flex-col justify-between items-start"
             />
           ))}
         </div>
 
-        <div className="mb-2 text-2xl font-bold">
+        <div className="mb-2 text-2xl font-bold rounded-lg backdrop-blur-sm bg-white/90 px-6 py-3 shadow flex justify-between items-center md:w-2/3">
           🚀 Aerospace Projects 🚀
-          {' '}<a href={`/home/categories/aerospace`} className="underline text-sm">see more...</a>
+          <a href={`/home/categories/aerospace`} className="underline text-sm">see more...</a>
         </div>
-        <Separator className="mb-4" />
+
         <div className="mb-10 grid grid-rows-auto grid-cols-1 md:grid-cols-3 gap-2">
           {aerospaceProjects.map(project => (
             <ProjectCard
@@ -133,14 +136,16 @@ export default async function Home() {
               tags={project.tags[0].split(', ')}
               status={project.status}
               stars={project.count}
+              className="h-full flex flex-col justify-between items-start"
             />
           ))}
         </div>
-        <div className="mb-2 text-2xl font-bold">
+
+        <div className="mb-2 text-2xl font-bold rounded-lg backdrop-blur-sm bg-white/90 px-6 py-3 shadow flex justify-between items-center md:w-2/3">
           👾 AI/ML Projects 👾
-          {' '}<a href={`/home/categories/ai`} className="underline text-sm">see more...</a>
-        </div>
-        <Separator className="mb-4" />
+          <a href={`/home/categories/ai`} className=" underline text-sm">see more...</a>
+        </div >
+
         <div className="mb-10 grid grid-rows-auto grid-cols-1 md:grid-cols-3 gap-2">
           {aimlProjects.map(project => (
             <ProjectCard
@@ -151,15 +156,16 @@ export default async function Home() {
               tags={project.tags[0].split(', ')}
               status={project.status}
               stars={project.count}
+              className="h-full flex flex-col justify-between items-start"
             />
           ))}
         </div>
 
-        <div className="mb-2 text-2xl font-bold">
+        <div className="mb-2 text-2xl font-bold rounded-lg backdrop-blur-sm bg-white/90 px-6 py-3 shadow flex justify-between items-center md:w-2/3">
           🧪 Chemistry Projects 🧪
-          {' '}<a href={`/home/categories/chemistry`} className="underline text-sm">see more...</a>
+          <a href={`/home/categories/chemistry`} className="underline text-sm">see more...</a>
         </div>
-        <Separator className="mb-4" />
+
         <div className="mb-10 grid grid-rows-auto grid-cols-1 md:grid-cols-3 gap-2">
           {chemiProjects.map(project => (
             <ProjectCard
@@ -170,15 +176,16 @@ export default async function Home() {
               tags={project.tags[0].split(', ')}
               status={project.status}
               stars={project.count}
+              className="h-full flex flex-col justify-between items-start"
             />
           ))}
         </div>
 
-        <div className="mb-2 text-2xl font-bold">
+        <div className="mb-2 text-2xl font-bold rounded-lg backdrop-blur-sm bg-white/90 px-6 py-3 shadow flex justify-between items-center md:w-2/3">
           🧬 Biotech Projects 🧬
-          {' '}<a href={`/home/categories/biotech`} className="underline text-sm">see more...</a>
+          <a href={`/home/categories/biotech`} className="underline text-sm">see more...</a>
         </div>
-        <Separator className="mb-4" />
+
         <div className="mb-10 grid grid-rows-auto grid-cols-1 md:grid-cols-3 gap-2">
           {bioProjects.map(project => (
             <ProjectCard
@@ -189,15 +196,16 @@ export default async function Home() {
               tags={project.tags[0].split(', ')}
               status={project.status}
               stars={project.count}
+              className="h-full flex flex-col justify-between items-start"
             />
           ))}
         </div>
 
-        <div className="mb-2 text-2xl font-bold">
+        <div className="mb-2 text-2xl font-bold rounded-lg backdrop-blur-sm bg-white/90 px-6 py-3 shadow flex justify-between items-center md:w-2/3">
           🌎 Environmental Projects 🌎
-          {' '}<a href={`/home/categories/environmental`} className="underline text-sm">see more...</a>
+          <a href={`/home/categories/environmental`} className="underline text-sm">see more...</a>
         </div>
-        <Separator className="mb-4" />
+
         <div className="mb-10 grid grid-rows-auto grid-cols-1 md:grid-cols-3 gap-2">
           {envProjects.map(project => (
             <ProjectCard
@@ -208,10 +216,11 @@ export default async function Home() {
               tags={project.tags[0].split(', ')}
               status={project.status}
               stars={project.count}
+              className="h-full flex flex-col justify-between items-start"
             />
           ))}
         </div>
-      </div>
+      </div >
     </>
   );
 }

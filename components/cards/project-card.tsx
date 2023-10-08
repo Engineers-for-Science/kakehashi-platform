@@ -22,6 +22,26 @@ interface ProjectCardProps extends React.HTMLAttributes<HTMLElement> {
   stars: number,
 }
 
+const DisplayCutTags = ({ tags }: { tags: string[] }) => {
+  const displayCount = 3;
+  const excess = tags.length > displayCount ? tags.length - displayCount : 0;
+
+  return (
+    <>
+      {tags.slice(0, Math.min(displayCount, tags.length)).map((tag, index) => (
+        <Badge key={index} className="mr-1 mb-1">
+          {tag.slice(1, -1)}
+        </Badge>
+      ))}
+      {excess > 0 && (
+        <Badge className="mr-1 mb-1">
+          +{excess}
+        </Badge>
+      )}
+    </>
+  );
+};
+
 export function ProjectCard({
   className,
   id,
@@ -32,10 +52,11 @@ export function ProjectCard({
   stars,
   ...props
 }: ProjectCardProps) {
+
   return (
     <Link href={`/home/projects/${id}`}>
       <Card
-        className={cn("hover:bg-gray-50 cursor-pointer shadow", className)}
+        className={cn("hover:bg-gray-50 cursor-pointer shadow h-full flex flex-col justify-between items-start", className)}
         {...props}
       >
         <CardHeader className="grid grid-cols-[1fr_60px] items-start gap-2 space-y-0">
@@ -52,7 +73,7 @@ export function ProjectCard({
         <CardContent>
           <div className="text-xs text-muted-foreground">
             <div className="flex flex-wrap items-center mb-2">
-              {tags.map((tag: string, index: number) => <Badge key={index} className="mr-1 mb-1">{tag.slice(1, -1)}</Badge>)}
+              {<DisplayCutTags tags={tags} />}
             </div>
             <div>
               <Badge

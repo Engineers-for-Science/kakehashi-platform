@@ -10,6 +10,7 @@ import { ArrowBigRight, CheckCheckIcon, SearchCheckIcon, SearchIcon } from "luci
 import LoadingCard from "@/components/cards/loading-card";
 import { useState } from "react";
 
+
 function isValidUrl(text: string): boolean {
   const pattern = new RegExp('^(https?:\\/\\/)?' + // protocol
     '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.?)+[a-z]{2,}|' + // domain name
@@ -19,7 +20,6 @@ function isValidUrl(text: string): boolean {
     '(\\#[-a-z\\d_]*)?$', 'i'); // fragment locator
   return !!pattern.test(text);
 }
-
 
 export default function FindContributors() {
   const [contributors, setContributors] = useState<any[]>([])
@@ -56,6 +56,7 @@ export default function FindContributors() {
   return (
     <>
       <div className="p-6 md:pt-20">
+
         <div className="text-[20px] md:text-[40px] font-bold flex items-center md:justify-center">
           Find Skilled Contributors
         </div>

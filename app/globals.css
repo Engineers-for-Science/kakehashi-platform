@@ -65,7 +65,44 @@
     --ring: 212.7 26.8% 83.9%;
   }
 }
- 
+@keyframes gradientFlow {
+  0% {
+      background-position: 0% 50%;
+  }
+  50% {
+      background-position: 100% 50%;
+  }
+  100% {
+      background-position: 0% 50%;
+  }
+}
+/* Add this to your styles.css or similar */
+.bg-custom-gradient {
+  background: linear-gradient(
+        to right, 
+        #FFFFFF 0%, 
+        #FFFFFF 25%, 
+        #FFFFFF 25.5%, 
+        #FFFFFF 40%, 
+        #0B3D91 50%, 
+        #FC3D21 50.5%, 
+        #FFFFFF 51%, 
+        #FFFFFF 75%, 
+        #0B3D91 75.5%, 
+        #FFFFFF 77%, 
+        #FFFFFF 100%
+    );
+    /* background-image: url('/NASA_log.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center; */
+}
+
+/*  */
+
+
+
+
 @layer base {
   * {
     @apply border-border;
@@ -74,3 +111,5 @@
     @apply bg-background text-foreground;
   }
 }
+
+
