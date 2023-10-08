@@ -22,14 +22,14 @@ export default function TermsOfService() {
                   Users can send and receive messages through our direct messaging feature. You are solely responsible and liable for the content of messages you send or receive. Any inappropriate or illegal content can result in immediate account suspension or termination.
                 </p>
 
-                <h3 className="font-bold mt-4">2. Data Collection from ORCID and LinkedIn</h3>
+                <h3 className="font-bold mt-4">2. Data Collection from ORCID</h3>
                 <p>
-                  To enhance collaboration and match users with open-source projects, we collect data from ORCID and LinkedIn. This data is solely used for the purpose of enhancing user experience and ensuring efficient project collaborations.
+                  To enhance collaboration and match users with open-source projects, we collect data from ORCID when you register an account with Kakehashi. This data is solely used for the purpose of enhancing user experience and ensuring efficient project collaborations.
                 </p>
 
                 <h3 className="font-bold mt-4">3. Liability Limitation</h3>
                 <p>
-                  To the fullest extent permitted by applicable law, [Your Company Name] shall not be liable for any indirect, incidental, special, consequential, or punitive damages, or any loss of profits or revenues, whether incurred directly or indirectly, or any loss of data, use, goodwill, or other intangible losses.
+                  To the fullest extent permitted by applicable law, Kakehashi shall not be liable for any indirect, incidental, special, consequential, or punitive damages, or any loss of profits or revenues, whether incurred directly or indirectly, or any loss of data, use, goodwill, or other intangible losses.
                 </p>
 
                 <h3 className="font-bold mt-4">4. Changes to the Terms</h3>
