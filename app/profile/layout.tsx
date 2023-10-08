@@ -38,9 +38,9 @@ interface ProfileLayoutProps {
 export default function ProfileLayout({ children }: ProfileLayoutProps) {
   return (
     <>
-      <div className="md:block h-screen">
-        <div className="flex flex-col h-full">
-          <div className="border-b">
+      <div className="md:block min-h-screen">
+        <div className="flex flex-col min-h-screen bg-custom-gradient">
+          <div className="border-b backdrop-blur-sm bg-white/70">
             <div className="flex h-16 items-center px-2">
               <div className="flex items-center font-bold text-sm md:text-2xl py-1 px-1 md:px-2">
                 <Image
@@ -61,7 +61,7 @@ export default function ProfileLayout({ children }: ProfileLayoutProps) {
               </div>
             </div>
           </div>
-          {children}
+          <div className="bg-custom-gradient">{children}</div>
         </div>
       </div>
     </>

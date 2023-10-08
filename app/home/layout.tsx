@@ -38,9 +38,9 @@ interface HomeLayoutProps {
 export default function HomeLayout({ children }: HomeLayoutProps) {
   return (
     <>
-      <div className="md:block h-screen">
-        <div className="flex flex-col h-full">
-          <div className="border-b">
+      <div className="md:block min-h-screen">
+        <div className="flex flex-col min-h-screen bg-custom-gradient">
+          <div className="border-b backdrop-blur-sm bg-white/70">
             <div className="flex h-16 items-center px-2">
               <div className="flex items-center font-bold text-xs md:text-2xl py-1 px-0.5 md:px-2">
                 <Image
@@ -61,7 +61,7 @@ export default function HomeLayout({ children }: HomeLayoutProps) {
               </div>
             </div>
           </div>
-          {children}
+          <div className="">{children}</div>
         </div>
       </div>
     </>

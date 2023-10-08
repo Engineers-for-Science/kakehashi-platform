@@ -67,12 +67,12 @@ export default async function ProjectPage({ params }: { params: { id: string } }
 
           <div className="flex-col md:w-2/3 md:pr-4">
 
-            <div className="mb-2 flex flex-col items-start justify-start rounded-lg border p-4 shadow">
+            <div className="mb-2 flex flex-col items-start justify-start rounded-lg backdrop-blur-sm bg-white/90 p-4 shadow">
               <div className="text-md font-bold">Description</div>
               <div className="text-md" dangerouslySetInnerHTML={{ __html: result.rows[0].description }}></div>
             </div>
 
-            <div className="mb-2 flex flex-col items-start justify-start rounded-lg border p-4 shadow">
+            <div className="mb-2 flex flex-col items-start justify-start rounded-lg backdrop-blur-sm bg-white/90 p-4 shadow">
               <div className="text-md font-bold">Tags</div>
               <div className="flex flex-wrap pt-1">
                 {result.rows[0].tags[0].split(', ').map((tag: string, index: number) => <Badge key={index} className="mr-1 mb-1">{tag.slice(1, -1)}</Badge>)}
@@ -80,14 +80,14 @@ export default async function ProjectPage({ params }: { params: { id: string } }
             </div>
 
             {result.rows[0].project_url ? (
-              <div className="mb-2 flex flex-col items-start justify-start rounded-lg border p-4 shadow">
+              <div className="mb-2 flex flex-col items-start justify-start rounded-lg backdrop-blur-sm bg-white/90 p-4 shadow">
                 <div className="text-md font-bold">Website</div>
                 <a href={result.rows[0].project_url} target="_blank" className="text-md underline hover:text-blue-300">{result.rows[0].project_url}</a>
               </div>
             ) : <></>}
 
             {result.rows[0].github_url ? (
-              <div className="mb-2 flex flex-col items-start justify-start rounded-lg border p-4 shadow">
+              <div className="mb-2 flex flex-col items-start justify-start rounded-lg backdrop-blur-sm bg-white/90 p-4 shadow">
                 <div className="text-md font-bold">Repository</div>
                 <a href={result.rows[0].github_url} target="_blank" className="text-md underline hover:text-blue-300">{result.rows[0].github_url}</a>
               </div>
@@ -97,14 +97,14 @@ export default async function ProjectPage({ params }: { params: { id: string } }
           </div>
 
           <div className="md:w-1/3">
-            <div className="mb-2 flex flex-col items-start justify-start rounded-lg border p-4 shadow">
+            {/* <div className="mb-2 flex flex-col items-start justify-start rounded-lg backdrop-blur-sm bg-white/90 p-4 shadow">
               <div className="text-md font-bold mb-1">Media</div>
               <div className="text-md flex flex-wrap">
                 {project.media.map((image, index) => (
-                  <img key={index} src={image} alt="project media" className="w-40 mr-1 mb-1 rounded border" />
+                  <img key={index} src={image} alt="project media" className="w-40 mr-1 mb-1 rounded backdrop-blur-sm bg-white/90" />
                 ))}
               </div>
-            </div>
+            </div> */}
             <TeamCard members={project.team} />
           </div>
 
