@@ -9,26 +9,35 @@ import Image from "next/image";
 
 
 export default async function ProjectPage({ params }: { params: { id: string } }) {
-  const project = {
-    team: [
-      {
-        id: "bsdhbsdksdbk",
-        name: "JackJack Dev",
-        email: "jackyoukstetter1@gmail.com",
-        role: "Developer",
-      },
-      {
-        id: "hsdkjsdhkjsdh",
-        name: "Taro Dev",
-        email: "taro.ishihara.mail@gmail.com",
-        role: "Developer",
-      }
-    ]
-  }
-
   const result = await sql`
     SELECT * FROM project WHERE project_id = ${params.id};
   `;
+
+  const teamMembers = []
+  const ownerAwait = sql`
+  SELECT * FROM contributor WHERE id = ${result.rows[0].project_owner};
+  `;
+
+  const memberIds = [result.rows[0].project_member_01, result.rows[0].project_member_02, result.rows[0].project_member_03, result.rows[0].project_member_04, result.rows[0].project_member_05]
+  const validMemberIds = memberIds.filter((id) => id != null && id != '')
+  // @ts-expect-error
+  const membersAwait = sql`SELECT * FROM contributor WHERE id = any (${validMemberIds});`;
+
+  const [owner, members] = await Promise.all([ownerAwait, membersAwait])
+  teamMembers.push({
+    id: owner.rows[0].id,
+    name: owner.rows[0].name,
+    email: owner.rows[0].email,
+    tags: owner.rows[0].tags
+  })
+  members.rows.map(member => {
+    teamMembers.push({
+      id: member.id,
+      name: member.name,
+      email: member.email,
+      tags: member.tags
+    })
+  })
 
   const user = await getSessionUser()
   if (!user) {
@@ -82,7 +91,7 @@ export default async function ProjectPage({ params }: { params: { id: string } }
                   ))}
                 </div>
               </div> */}
-              <TeamCard members={project.team} />
+              <TeamCard members={teamMembers} />
             </div>
 
           </div >
@@ -148,7 +157,7 @@ export default async function ProjectPage({ params }: { params: { id: string } }
                 ))}
               </div>
             </div> */}
-            <TeamCard members={project.team} />
+            <TeamCard members={teamMembers} />
           </div>
 
         </div >

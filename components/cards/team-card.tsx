@@ -27,7 +27,7 @@ interface TeamCardProps extends React.HTMLAttributes<HTMLElement> {
     id: string
     name: string
     email: string
-    role: string
+    tags: string[]
   }[]
 }
 
@@ -52,7 +52,7 @@ export async function TeamCard({ className, members, ...props }: TeamCardProps) 
               </Avatar>
               <div>
                 <p className="text-sm font-medium leading-none">{member.name}</p>
-                <p className="text-sm text-muted-foreground">{member.role}</p>
+                <p className="text-sm text-muted-foreground">{member.tags.toString()}</p>
               </div>
             </div>
             <Popover>
