@@ -34,6 +34,13 @@ interface TeamCardProps extends React.HTMLAttributes<HTMLElement> {
   }
 }
 
+function trimApostrophes(str: string) {
+  if (str.startsWith("'") && str.endsWith("'")) {
+    return str.slice(1, -1);
+  }
+  return str;
+}
+
 export function ContributorCard({ className, contributor, ...props }: TeamCardProps) {
   return (
     <Card className="shadow">
@@ -51,7 +58,7 @@ export function ContributorCard({ className, contributor, ...props }: TeamCardPr
             </div>
             <div className="w-full mb-5 text-sm text-gray-400" dangerouslySetInnerHTML={{ __html: contributor.bio ?? '' }} />
             <div className="flex flex-wrap w-full mb-5">
-              {contributor.tags[0].split(', ').map((tag: string, index: number) => <Badge key={index} className="mr-1 mb-1">{tag.slice(1, -1)}</Badge>)}
+              {contributor.tags[0].split(', ').map((tag: string, index: number) => <Badge key={index} className="mr-1 mb-1">{trimApostrophes(tag)}</Badge>)}
             </div>
           </div>
           <Popover>
