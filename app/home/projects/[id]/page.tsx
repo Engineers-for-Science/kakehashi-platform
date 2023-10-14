@@ -62,7 +62,7 @@ export default async function ProjectPage({ params }: { params: { id: string } }
 
               <div className="mb-2 flex flex-col items-start justify-start rounded-lg backdrop-blur-sm bg-white/90 p-4 shadow">
                 <div className="text-md font-bold">Description</div>
-                <div className="text-md" dangerouslySetInnerHTML={{ __html: result.rows[0].description }}></div>
+                <div className="text-md break-words max-w-full" dangerouslySetInnerHTML={{ __html: result.rows[0].description }}></div>
               </div>
 
               <div className="mb-2 flex flex-col items-start justify-start rounded-lg backdrop-blur-sm bg-white/90 p-4 shadow">
